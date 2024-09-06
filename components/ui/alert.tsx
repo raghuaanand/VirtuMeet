@@ -24,6 +24,7 @@ const Alert = ({ title, iconUrl }: PermissionCardProps) => {
               <p className="text-center text-xl font-semibold">{title}</p>
             </div>
 
+
             <Link href="/" className={buttonVariants()}>
               Back to Home
             </Link>
