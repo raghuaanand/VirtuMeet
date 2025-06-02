@@ -25,9 +25,19 @@ const Time = () => {
   if (!isMounted) return null; //prevent hyderation error
 
   return (
-    <div className="flex flex-col gap-2">
-      <h1 className="text-4xl font-extrabold lg:text-7xl">{time}</h1>
-      <p className="text-lg font-medium text-sky-1 lg:text-2xl">{date}</p>
+    <div className="flex flex-col items-center gap-3 text-center">
+      <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white drop-shadow-2xl animate-pulse">
+        {time}
+      </h1>
+      <p className="text-sm md:text-lg lg:text-2xl font-medium text-gray-200/90 tracking-wide">
+        {date}
+      </p>
+      {/* Decorative dots */}
+      <div className="flex gap-2 mt-2">
+        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-150"></div>
+        <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-300"></div>
+      </div>
     </div>
   );
 };

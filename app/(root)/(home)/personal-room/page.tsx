@@ -17,11 +17,15 @@ const Table = ({
   title: string;
   description: string;
 }) => (
-  <div className="flex flex-col items-start gap-2 xl:flex-row">
-    <h3 className="text-base font-medium text-sky-1 lg:text-xl">{title}:</h3>
-    <h4 className="truncate text-sm font-bold max-sm:max-w-[320px] lg:text-xl">
-      {description}
-    </h4>
+  <div className="modern-card p-6 space-y-3 hover-lift transition-all duration-300">
+    <h3 className="text-lg font-semibold text-gradient bg-gradient-to-r from-blue-300 to-purple-300">
+      {title}
+    </h3>
+    <div className="p-3 glass-morphism-dark rounded-lg border border-white/10 group">
+      <h4 className="text-white font-medium break-all group-hover:text-blue-300 transition-colors duration-300">
+        {description}
+      </h4>
+    </div>
   </div>
 );
 
@@ -67,32 +71,56 @@ const PersonalRoomPage = () => {
   };
 
   return (
-    <section className="size-full flex flex-col gap-10 text-white">
-      <h2 className="text-3xl font-bold">Personal Room</h2>
-      <div className="flex w-full flex-col gap-8 xl:max-w-4xl overflow-hidden">
-        <Table
-          title="Topic"
-          description={`${user?.firstName} ${user?.lastName}'s Meeting Room`}
-        />
-        <Table title="Meeting ID" description={meetingId!} />
-        <Table title="Link" description={meetingLink} />
+    <section className="size-full flex flex-col gap-10 text-white p-6">
+      <div className="space-y-4">
+        <h2 className="text-4xl font-bold text-gradient bg-gradient-to-r from-emerald-300 via-blue-300 to-purple-300">
+          Personal Meeting Room
+        </h2>
+        <p className="text-gray-400 text-lg">
+          Your dedicated space for instant meetings and collaboration
+        </p>
+        <div className="h-1 w-20 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full" />
       </div>
-      <div className="flex gap-5">
-        <Button onClick={startRoom}>Start Meeting</Button>
+
+      <div className="flex w-full flex-col gap-6 xl:max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
+          <Table
+            title="Meeting Topic"
+            description={`${user?.firstName} ${user?.lastName}'s Personal Room`}
+          />
+          <Table 
+            title="Meeting ID" 
+            description={meetingId!} 
+          />
+          <Table 
+            title="Meeting Link" 
+            description={meetingLink} 
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-4 pt-6">
+        <Button 
+          onClick={startRoom}
+          className="btn-glow px-8 py-3 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 transition-all duration-300 font-medium text-white border-0 hover-lift"
+        >
+          Start Meeting
+        </Button>
         <Button
-          variant={"secondary"}
+          variant="outline"
           onClick={onCopy}
           disabled={copied}
-          className="transition duration-300"
+          className="px-8 py-3 glass-morphism-dark border border-white/20 text-white hover:bg-white/10 transition-all duration-300 hover-lift"
         >
           {copied ? (
             <>
-              Copied <Check className="size-4 ml-2" />
+              <Check className="size-4 mr-2 text-green-400" />
+              Copied Successfully!
             </>
           ) : (
             <>
-              Copy Invitation
-              <Copy className="size-4 ml-2" />
+              <Copy className="size-4 mr-2" />
+              Copy Invitation Link
             </>
           )}
         </Button>

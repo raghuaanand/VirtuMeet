@@ -79,44 +79,60 @@ const CallList = ({ type }: Props) => {
   const noCallsMessage = getNoCallsMessage();
 
   return (
-    <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
+    <div className="w-full">
       {calls && calls.length > 0 ? (
-        calls.map((meeting: Call | CallRecording) => (
-          <MeetingCard
-            key={(meeting as Call).id || crypto.randomUUID()}
-            icon={
-              type === "Ended"
-                ? "/icons/previous.svg"
-                : type === "Upcoming"
-                ? "/icons/upcoming.svg"
-                : "/icons/recordings.svg"
-            }
-            title={
-              (meeting as Call).state?.custom?.description ||
-              (meeting as CallRecording).filename ||
-              "No Description"
-            }
-            date={
-              (meeting as Call).state?.startsAt?.toLocaleString() ||
-              (meeting as CallRecording).start_time
-            }
-            isPreviousMeeting={type === "Ended"}
-            link={
-              type === "Recordings"
-                ? (meeting as CallRecording).url
-                : `${origin}/meeting/${(meeting as Call).id}`
-            }
-            ButtonIcon={type === "Recordings" ? Play : undefined}
-            buttonText={type === "Recordings" ? "Play" : "Start"}
-            handleClick={
-              type === "Recordings"
-                ? () => router.push((meeting as CallRecording).url)
-                : () => router.push(`/meeting/${(meeting as Call).id}`)
-            }
-          />
-        ))
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
+          {calls.map((meeting: Call | CallRecording) => (
+            <MeetingCard
+              key={(meeting as Call).id || crypto.randomUUID()}
+              icon={
+                type === "Ended"
+                  ? "/icons/previous.svg"
+                  : type === "Upcoming"
+                  ? "/icons/upcoming.svg"
+                  : "/icons/recordings.svg"
+              }
+              title={
+                (meeting as Call).state?.custom?.description ||
+                (meeting as CallRecording).filename ||
+                "No Description"
+              }
+              date={
+                (meeting as Call).state?.startsAt?.toLocaleString() ||
+                (meeting as CallRecording).start_time
+              }
+              isPreviousMeeting={type === "Ended"}
+              link={
+                type === "Recordings"
+                  ? (meeting as CallRecording).url
+                  : `${origin}/meeting/${(meeting as Call).id}`
+              }
+              ButtonIcon={type === "Recordings" ? Play : undefined}
+              buttonText={type === "Recordings" ? "Play" : "Start"}
+              handleClick={
+                type === "Recordings"
+                  ? () => router.push((meeting as CallRecording).url)
+                  : () => router.push(`/meeting/${(meeting as Call).id}`)
+              }
+            />
+          ))}
+        </div>
       ) : (
-        <h3 className="text-2xl font-bold text-white">{noCallsMessage}</h3>
+        <div className="flex flex-col items-center justify-center py-16 text-center space-y-6">
+          <div className="w-24 h-24 rounded-full glass-morphism-dark border border-white/10 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-gray-400 to-gray-600 flex items-center justify-center">
+              <span className="text-2xl">📅</span>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-2xl font-bold text-white">{noCallsMessage}</h3>
+            <p className="text-gray-400 max-w-md">
+              {type === "Ended" && "Your completed meetings will appear here"}
+              {type === "Upcoming" && "Schedule a meeting to see it here"}
+              {type === "Recordings" && "Your recorded meetings will appear here"}
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );

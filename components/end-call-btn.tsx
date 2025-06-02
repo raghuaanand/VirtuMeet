@@ -30,7 +30,10 @@ const EndCallBtn = () => {
   };
 
   return (
-    <Button onClick={endCall} variant={"destructive"}>
+    <Button 
+      onClick={endCall} 
+      className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-0 transition-all duration-300 hover-lift btn-glow font-medium"
+    >
       End call for everyone
     </Button>
   );

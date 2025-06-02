@@ -2,7 +2,6 @@
 
 import { SignIn, useUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 const SignInPage = () => {
@@ -14,7 +13,43 @@ const SignInPage = () => {
     }
   }, [isSignedIn]);
 
-  return isSignedIn ? null : <SignIn />;
+  return isSignedIn ? null : (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20 flex items-center justify-center p-6">
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      
+      <div className="relative z-10 w-full max-w-md">
+        <div className="text-center mb-8 space-y-3">
+          <h1 className="text-4xl font-bold text-gradient bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300">
+            Welcome Back
+          </h1>
+          <p className="text-gray-400 text-lg">
+            Sign in to continue to VirtuMeet
+          </p>
+          <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto" />
+        </div>
+        
+        <div className="modern-card p-8">
+          <SignIn 
+            appearance={{
+              elements: {
+                rootBox: "mx-auto",
+                card: "bg-transparent shadow-none border-none",
+                headerTitle: "text-white",
+                headerSubtitle: "text-gray-400",
+                socialButtonsBlockButton: "glass-morphism-dark border border-white/10 text-white hover:bg-white/10",
+                formButtonPrimary: "btn-glow bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600",
+                formFieldInput: "glass-morphism-dark border border-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-400/50",
+                footerActionLink: "text-blue-400 hover:text-blue-300",
+                identityPreviewText: "text-white",
+                formFieldLabel: "text-gray-300"
+              }
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SignInPage;

@@ -37,6 +37,8 @@ export default function RootLayout({
           colorInputText: "#fff",
         },
       }}
+      // Enable multiple sessions for the same account
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
     >
       <html lang="en">
         <body className={cn(inter.className, "bg-dark-2")}>

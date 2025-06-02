@@ -78,73 +78,113 @@ const ScheduleMeeting = () => {
       open={isOpen && type === "schedule-meeting"}
       onOpenChange={handleClose}
     >
-      <DialogContent className="flex w-full max-w-lg flex-col gap-6 border-none bg-dark-1 px-6 py-9 text-white">
+      <DialogContent className="modern-card w-full max-w-lg border-none px-6 py-9 text-white shadow-2xl backdrop-blur-xl">
         {callDetail ? (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-8">
             <div className="flex justify-center">
-              <Image
-                alt="checked"
-                width={72}
-                height={72}
-                src={"/icons/checked.svg"}
-              />
+              <div className="relative">
+                <Image
+                  alt="checked"
+                  width={72}
+                  height={72}
+                  src={"/icons/checked.svg"}
+                  className="icon-glow animate-pulse"
+                />
+                <div className="absolute inset-0 bg-green-400/20 rounded-full blur-xl animate-pulse" />
+              </div>
             </div>
-            <h2 className="text-3xl font-bold leading-[42px] text-center">
-              Meeting Scheduled
+            <h2 className="text-3xl font-bold leading-[42px] text-center text-gradient bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300">
+              Meeting Scheduled Successfully! 
             </h2>
-            <div className="flex items-center">
-              <input
-                className="flex-1 px-2 text-xs rounded-l-md h-8 bg-dark-3 truncate outline-none"
-                value={meetingLink}
-                readOnly
-              />
-              <Button
-                onClick={onCopy}
-                disabled={copied}
-                className="h-8 rounded-l-none"
-              >
-                {copied ? (
-                  <Check className="h-4 w-4" />
-                ) : (
-                  <Copy className="h-4 w-4" />
-                )}
-              </Button>
+            <div className="space-y-4">
+              <p className="text-gray-300 text-center">
+                Share this link with participants to join the meeting
+              </p>
+              <div className="flex items-center gap-2 p-3 glass-morphism-dark rounded-lg border border-white/10">
+                <input
+                  className="flex-1 px-3 py-2 text-sm rounded-md bg-black/20 backdrop-blur-sm border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent truncate"
+                  value={meetingLink}
+                  readOnly
+                />
+                <Button
+                  onClick={onCopy}
+                  disabled={copied}
+                  className="btn-glow px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 border-0 font-medium"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-4 w-4 mr-2" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4 mr-2" />
+                      Copy
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
         ) : (
-          <div className="flex flex-col gap-6">
-            <h2 className="text-3xl font-bold leading-[42px] text-center">
-              Create Meeting
-            </h2>
-            <div className="flex flex-col gap-2.5">
-              <Label htmlFor="description">Add a description</Label>
-              <Textarea
-                name="description"
-                value={values.description}
-                onChange={(e) =>
-                  setValues({
-                    ...values,
-                    description: e.target.value,
-                  })
-                }
-                className="bg-dark-3 border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-              />
+          <div className="flex flex-col gap-8">
+            <div className="text-center space-y-2">
+              <h2 className="text-3xl font-bold leading-[42px] text-gradient bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300">
+                Schedule Meeting
+              </h2>
+              <p className="text-gray-400">
+                Set up a future meeting with date, time and description
+              </p>
             </div>
-            <div className="flex w-full flex-col gap-2.5">
-              <Label htmlFor="description">Select Date and Time</Label>
-              <DatePicker
-                selected={values.dateTime}
-                onChange={(date) => setValues({ ...values, dateTime: date! })}
-                showTimeSelect
-                timeFormat="HH:mm"
-                timeIntervals={15}
-                timeCaption="time"
-                dateFormat="MMMM d, yyyy h:mm aa"
-                className="w-full rounded bg-dark-3 p-2 focus:outline-none"
-              />
+            
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <Label htmlFor="description" className="text-sm font-medium text-gray-300">
+                  Add a description (optional)
+                </Label>
+                <Textarea
+                  name="description"
+                  placeholder="Enter meeting description, agenda, or notes..."
+                  value={values.description}
+                  onChange={(e) =>
+                    setValues({
+                      ...values,
+                      description: e.target.value,
+                    })
+                  }
+                  className="glass-morphism-dark border border-white/10 focus:ring-2 focus:ring-blue-400/50 focus:border-transparent text-white placeholder-gray-400 resize-none backdrop-blur-sm"
+                  rows={4}
+                />
+              </div>
+              
+              <div className="space-y-3">
+                <Label htmlFor="datetime" className="text-sm font-medium text-gray-300">
+                  Select Date and Time
+                </Label>
+                <div className="relative">
+                  <DatePicker
+                    selected={values.dateTime}
+                    onChange={(date) => setValues({ ...values, dateTime: date! })}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="time"
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    minDate={new Date()}
+                    className="w-full p-3 rounded-lg glass-morphism-dark border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent backdrop-blur-sm"
+                    placeholderText="Select date and time"
+                    popperClassName="date-picker-popper"
+                  />
+                </div>
+              </div>
             </div>
-            <Button onClick={handleClick} isLoading={loading}>
-              Schedule Meeting
+            
+            <Button 
+              onClick={handleClick} 
+              isLoading={loading}
+              className="btn-glow w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 font-medium text-white border-0 hover-lift"
+            >
+              {loading ? "Scheduling..." : "Schedule Meeting"}
             </Button>
           </div>
         )}
