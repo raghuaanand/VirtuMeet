@@ -1,17 +1,16 @@
 import CallList from "@/components/call-list";
-import { CallRecordingList } from "@stream-io/video-react-sdk";
 
 const RecordingsPage = () => {
   return (
-    <section className="flex size-full flex-col gap-10 text-white p-6">
-      <div className="space-y-4">
-        <h2 className="text-4xl font-bold text-gradient bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300">
+    <section className="flex size-full flex-col gap-6 text-white p-4">
+      <div className="space-y-3">
+        <h2 className="text-2xl font-bold" style={{ color: '#E0E0E0' }}>
           Recorded Meetings
         </h2>
-        <p className="text-gray-400 text-lg">
+        <p className="text-sm" style={{ color: '#A0A0A0' }}>
           Access and manage your recorded video calls and meetings
         </p>
-        <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+        <div className="h-px w-16 rounded-full" style={{ backgroundColor: '#1ABC9C' }} />
       </div>
       <div className="flex-1">
         <CallList type="Recordings" />

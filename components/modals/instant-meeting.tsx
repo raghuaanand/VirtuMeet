@@ -46,48 +46,31 @@ const InstantMeeting = () => {
 
   return (
     <Dialog open={isOpen && type === "instant-meeting"} onOpenChange={onClose}>
-      <DialogContent className="modern-card w-full max-w-lg p-8 text-white outline-none border-none">
-        <div className="flex flex-col items-center gap-8">
-          {/* Icon with glow effect */}
-          <div className="relative">
-            <div className="glassmorphism p-6 rounded-3xl">
-              <Video className="size-12 text-blue-400" />
-            </div>
-            <div className="absolute inset-0 bg-blue-500/20 rounded-3xl blur-xl animate-pulse"></div>
+      <DialogContent className="bg-[#242438] border border-[#3A3A4A] w-full max-w-md p-6 text-white outline-none">
+        <div className="flex flex-col items-center gap-6">
+          {/* Icon */}
+          <div className="p-4 rounded-full bg-[#1ABC9C]/10">
+            <Video className="w-8 h-8 text-[#1ABC9C]" />
           </div>
           
           {/* Content */}
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-gradient">
+          <div className="text-center space-y-2">
+            <h2 className="text-xl font-bold text-[#E0E0E0]">
               Start Instant Meeting
             </h2>
-            <p className="text-gray-300 text-lg leading-relaxed">
-              Create and join a meeting immediately with HD video quality
+            <p className="text-[#A0A0A0] text-sm">
+              Create and join a meeting immediately
             </p>
           </div>
           
           {/* Action button */}
           <Button 
             onClick={handleClick} 
-            isLoading={loading}
-            className="btn-glow w-full py-4 text-lg font-semibold"
-            size="lg"
+            disabled={loading}
+            className="w-full py-2 bg-[#1ABC9C] hover:bg-[#1ABC9C]/80 text-white font-medium rounded-lg transition-all duration-200"
           >
-            {!loading && <Zap className="size-5 mr-2" />}
-            {loading ? "Creating Meeting..." : "Start Meeting Now"}
+            {loading ? "Creating..." : "Start Meeting Now"}
           </Button>
-          
-          {/* Feature highlights */}
-          <div className="grid grid-cols-2 gap-4 w-full text-sm text-gray-400">
-            <div className="text-center">
-              <div className="text-blue-400 font-semibold">HD Quality</div>
-              <div>Crystal clear video</div>
-            </div>
-            <div className="text-center">
-              <div className="text-purple-400 font-semibold">Instant</div>
-              <div>No waiting time</div>
-            </div>
-          </div>
         </div>
       </DialogContent>
     </Dialog>

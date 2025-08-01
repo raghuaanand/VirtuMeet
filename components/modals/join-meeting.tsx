@@ -27,31 +27,28 @@ const JoinMeeting = () => {
 
   return (
     <Dialog open={isOpen && type === "join-meeting"} onOpenChange={onClose}>
-      <DialogContent className="modern-card w-full max-w-lg p-8 text-white outline-none border-none">
-        <div className="flex flex-col items-center gap-8">
-          {/* Icon with glow effect */}
-          <div className="relative">
-            <div className="glassmorphism p-6 rounded-3xl">
-              <UserPlus className="size-12 text-blue-400" />
-            </div>
-            <div className="absolute inset-0 bg-blue-500/20 rounded-3xl blur-xl animate-pulse"></div>
+      <DialogContent className="bg-[#242438] border border-[#3A3A4A] w-full max-w-md p-6 text-white outline-none">
+        <div className="flex flex-col items-center gap-6">
+          {/* Icon */}
+          <div className="p-4 rounded-full bg-[#1ABC9C]/10">
+            <UserPlus className="w-8 h-8 text-[#1ABC9C]" />
           </div>
           
           {/* Content */}
-          <div className="text-center space-y-4 w-full">
-            <h2 className="text-3xl font-bold text-gradient">
+          <div className="text-center space-y-2 w-full">
+            <h2 className="text-xl font-bold text-[#E0E0E0]">
               Join Meeting
             </h2>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-[#A0A0A0] text-sm">
               Enter the meeting ID or paste the invitation link
             </p>
             
             {/* Form */}
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 mt-8">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 mt-4">
               <div className="relative">
-                <Link2 className="absolute left-4 top-1/2 transform -translate-y-1/2 size-5 text-gray-400" />
+                <Link2 className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#A0A0A0]" />
                 <Input
-                  className="modern-card pl-12 pr-4 py-4 text-lg border-white/10 focus:border-blue-400/50 bg-white/5 backdrop-blur-sm"
+                  className="pl-10 pr-4 py-2 bg-[#1C1C2E] border border-[#3A3A4A] text-[#E0E0E0] placeholder-[#A0A0A0] focus:border-[#1ABC9C] focus:ring-0"
                   placeholder="Enter meeting ID or paste link..."
                   {...register("link", {
                     required: "Meeting ID or link is required",
@@ -62,28 +59,17 @@ const JoinMeeting = () => {
                   })}
                 />
                 {errors.link && (
-                  <p className="text-red-400 text-sm mt-2 text-left">{errors.link.message}</p>
+                  <p className="text-red-400 text-xs mt-1 text-left">{errors.link.message}</p>
                 )}
               </div>
               
               <Button 
                 type="submit" 
-                className="btn-glow w-full py-4 text-lg font-semibold"
-                size="lg"
+                className="w-full py-2 bg-[#1ABC9C] hover:bg-[#1ABC9C]/80 text-white font-medium rounded-lg transition-all duration-200"
               >
-                <UserPlus className="size-5 mr-2" />
                 Join Meeting
               </Button>
             </form>
-          </div>
-          
-          {/* Help text */}
-          <div className="text-center text-sm text-gray-400 space-y-2">
-            <p>Accepted formats:</p>
-            <div className="grid grid-cols-1 gap-1 text-xs">
-              <div>• Meeting ID: abc123</div>
-              <div>• Full URL: https://virtumeet.com/meeting/abc123</div>
-            </div>
           </div>
         </div>
       </DialogContent>

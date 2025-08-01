@@ -24,38 +24,37 @@ const MobileNav = () => {
           <Button 
             size="icon" 
             variant="ghost"
-            className="sm:hidden text-white hover:bg-white/10 border border-white/10 backdrop-blur-sm"
+            className="sm:hidden border rounded-lg"
+            style={{ color: '#E0E0E0', borderColor: '#3A3A4A', backgroundColor: '#242438' }}
           >
-            <Menu className="size-6" />
+            <Menu className="size-5" />
           </Button>
         </SheetTrigger>
         <SheetContent 
           side="left" 
-          className="glass-morphism-dark border-r border-white/10 p-0"
+          className="border-r p-0"
+          style={{ backgroundColor: '#1C1C2E', borderColor: '#3A3A4A' }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="relative">
-                <Image
-                  src="/icons/logo.svg"
-                  width={32}
-                  height={32}
-                  alt="VirtuMeet logo"
-                />
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-20 blur animate-pulse"></div>
-              </div>
+          <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: '#3A3A4A' }}>
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/icons/logo.svg"
+                width={28}
+                height={28}
+                alt="VirtuMeet logo"
+              />
               <div>
-                <h1 className="text-xl font-bold text-gradient">VirtuMeet</h1>
-                <p className="text-xs text-gray-400 -mt-1">Connect & Collaborate</p>
+                <h1 className="text-lg font-bold" style={{ color: '#E0E0E0' }}>VirtuMeet</h1>
+                <p className="text-xs -mt-1" style={{ color: '#A0A0A0' }}>Connect & Collaborate</p>
               </div>
             </Link>
           </div>
           
           {/* Navigation Links */}
-          <div className="flex h-[calc(100vh-140px)] flex-col justify-between overflow-y-auto">
+          <div className="flex h-[calc(100vh-120px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>
-              <section className="flex flex-col gap-3 pt-8 px-4 text-white">
+              <section className="flex flex-col gap-2 pt-4 px-3" style={{ color: '#E0E0E0' }}>
                 {sidebarLinks.map((item) => {
                   const isActive = pathname === item.route;
 
@@ -64,46 +63,24 @@ const MobileNav = () => {
                       <Link
                         href={item.route}
                         className={cn(
-                          "flex gap-4 items-center p-4 rounded-2xl w-full transition-all duration-300 group relative overflow-hidden",
-                          {
-                            "bg-gradient-to-r from-blue-600/80 to-purple-600/80 text-white shadow-lg shadow-blue-500/25": isActive,
-                            "hover:bg-white/5 hover:shadow-lg": !isActive,
-                          }
+                          "flex gap-3 items-center p-3 rounded-lg w-full transition-all duration-200",
+                          isActive ? "border-[#1ABC9C]" : "border-transparent"
                         )}
+                        style={{
+                          backgroundColor: isActive ? '#1ABC9C' : 'transparent',
+                          borderWidth: '1px',
+                          color: isActive ? '#FFFFFF' : '#E0E0E0'
+                        }}
                       >
-                        {/* Background glow for active state */}
-                        {isActive && (
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl -z-10"></div>
-                        )}
-                        
-                        {/* Icon container */}
-                        <div className={cn(
-                          "p-2 rounded-xl transition-all duration-300",
-                          isActive 
-                            ? "bg-white/20 shadow-lg" 
-                            : "group-hover:bg-white/10"
-                        )}>
-                          <Image
-                            src={item.imgURL}
-                            alt={item.label}
-                            width={20}
-                            height={20}
-                            className={cn(
-                              "transition-all duration-300",
-                              isActive ? "scale-110" : "group-hover:scale-105"
-                            )}
-                          />
-                        </div>
-                        
-                        <p className={cn(
-                          "font-semibold transition-all duration-300",
-                          isActive ? "text-white" : "text-gray-300 group-hover:text-white"
-                        )}>
+                        <Image
+                          src={item.imgURL}
+                          alt={item.label}
+                          width={18}
+                          height={18}
+                        />
+                        <p className="font-medium text-sm">
                           {item.label}
                         </p>
-                        
-                        {/* Shine effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                       </Link>
                     </SheetClose>
                   );
@@ -112,9 +89,9 @@ const MobileNav = () => {
             </SheetClose>
             
             {/* Footer */}
-            <div className="p-4">
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-white/10 text-center">
-                <p className="text-sm text-gray-400">
+            <div className="p-3">
+              <div className="p-3 rounded-lg border text-center" style={{ backgroundColor: '#242438', borderColor: '#3A3A4A' }}>
+                <p className="text-xs" style={{ color: '#A0A0A0' }}>
                   Powered by VirtuMeet
                 </p>
               </div>

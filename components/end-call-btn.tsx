@@ -32,7 +32,7 @@ const EndCallBtn = () => {
   return (
     <Button 
       onClick={endCall} 
-      className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-0 transition-all duration-300 hover-lift btn-glow font-medium"
+      className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white border border-red-700 transition-all duration-200 font-medium text-sm rounded-lg"
     >
       End call for everyone
     </Button>

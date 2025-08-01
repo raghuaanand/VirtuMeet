@@ -17,12 +17,12 @@ const Table = ({
   title: string;
   description: string;
 }) => (
-  <div className="modern-card p-6 space-y-3 hover-lift transition-all duration-300">
-    <h3 className="text-lg font-semibold text-gradient bg-gradient-to-r from-blue-300 to-purple-300">
+  <div className="bg-[#242438] border border-[#3A3A4A] rounded-lg p-4 space-y-2">
+    <h3 className="text-sm font-semibold text-[#1ABC9C]">
       {title}
     </h3>
-    <div className="p-3 glass-morphism-dark rounded-lg border border-white/10 group">
-      <h4 className="text-white font-medium break-all group-hover:text-blue-300 transition-colors duration-300">
+    <div className="p-3 bg-[#1C1C2E] rounded-lg border border-[#3A3A4A]">
+      <h4 className="text-[#E0E0E0] text-sm font-medium break-all">
         {description}
       </h4>
     </div>
@@ -71,19 +71,19 @@ const PersonalRoomPage = () => {
   };
 
   return (
-    <section className="size-full flex flex-col gap-10 text-white p-6">
-      <div className="space-y-4">
-        <h2 className="text-4xl font-bold text-gradient bg-gradient-to-r from-emerald-300 via-blue-300 to-purple-300">
+    <section className="w-full space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-2xl font-bold text-[#E0E0E0]">
           Personal Meeting Room
-        </h2>
-        <p className="text-gray-400 text-lg">
+        </h1>
+        <p className="text-[#A0A0A0] text-sm">
           Your dedicated space for instant meetings and collaboration
         </p>
-        <div className="h-1 w-20 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full" />
+        <div className="h-px w-16 bg-[#1ABC9C]" />
       </div>
 
-      <div className="flex w-full flex-col gap-6 xl:max-w-5xl">
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
+      <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Table
             title="Meeting Topic"
             description={`${user?.firstName} ${user?.lastName}'s Personal Room`}
@@ -99,10 +99,10 @@ const PersonalRoomPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 pt-6">
+      <div className="flex flex-col sm:flex-row gap-3">
         <Button 
           onClick={startRoom}
-          className="btn-glow px-8 py-3 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 transition-all duration-300 font-medium text-white border-0 hover-lift"
+          className="px-6 py-2 bg-[#1ABC9C] hover:bg-[#1ABC9C]/80 text-white font-medium rounded-lg transition-all duration-200"
         >
           Start Meeting
         </Button>
@@ -110,17 +110,17 @@ const PersonalRoomPage = () => {
           variant="outline"
           onClick={onCopy}
           disabled={copied}
-          className="px-8 py-3 glass-morphism-dark border border-white/20 text-white hover:bg-white/10 transition-all duration-300 hover-lift"
+          className="px-6 py-2 bg-[#242438] border border-[#3A3A4A] text-[#E0E0E0] hover:bg-[#3A3A4A] transition-all duration-200"
         >
           {copied ? (
             <>
-              <Check className="size-4 mr-2 text-green-400" />
-              Copied Successfully!
+              <Check className="size-4 mr-2 text-[#1ABC9C]" />
+              Copied!
             </>
           ) : (
             <>
               <Copy className="size-4 mr-2" />
-              Copy Invitation Link
+              Copy Link
             </>
           )}
         </Button>

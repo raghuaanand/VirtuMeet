@@ -59,36 +59,32 @@ const MeetingSetup = ({
     );
 
   return (
-    <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center gap-8 text-white p-6 bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20">
-      {/* Background overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-      
-      <div className="relative z-10 flex flex-col items-center gap-8 w-full max-w-4xl">
-        <div className="text-center space-y-3">
-          <h2 className="text-4xl font-bold text-gradient bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300">
+    <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center gap-6 text-white p-4" style={{ backgroundColor: '#1C1C2E' }}>
+      <div className="flex flex-col items-center gap-6 w-full max-w-3xl">
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold" style={{ color: '#E0E0E0' }}>
             Meeting Setup
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-lg" style={{ color: '#A0A0A0' }}>
             Configure your camera and microphone before joining
           </p>
-          <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto" />
         </div>
 
         <div className="w-full max-w-2xl">
-          <div className="modern-card p-6 space-y-6">
-            <div className="aspect-video rounded-xl overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm">
+          <div className="p-4 space-y-4 rounded-lg border" style={{ backgroundColor: '#242438', borderColor: '#3A3A4A' }}>
+            <div className="aspect-video rounded-lg overflow-hidden border" style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderColor: '#3A3A4A' }}>
               <VideoPreview />
             </div>
             
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 glass-morphism-dark rounded-lg border border-white/10">
-              <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3 rounded-lg border" style={{ backgroundColor: '#1C1C2E', borderColor: '#3A3A4A' }}>
+              <div className="flex items-center space-x-3">
                 <Switch
                   id="toggle"
-                  className="data-[state=checked]:bg-blue-500 data-[state=unchecked]:bg-gray-600"
+                  className="data-[state=checked]:bg-[#1ABC9C] data-[state=unchecked]:bg-gray-600"
                   checked={isMicCamToggled}
                   onCheckedChange={(e) => setisMicCamToggled(e.valueOf())}
                 />
-                <Label htmlFor="toggle" className="text-white font-medium cursor-pointer">
+                <Label htmlFor="toggle" className="font-medium cursor-pointer" style={{ color: '#E0E0E0' }}>
                   Join with mic and camera off
                 </Label>
               </div>
@@ -102,7 +98,8 @@ const MeetingSetup = ({
             call.join();
             setIsSetupComplete(true);
           }}
-          className="btn-glow px-12 py-4 text-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 font-medium text-white border-0 hover-lift"
+          className="px-8 py-3 text-lg font-medium text-white border-0 transition-all duration-200 rounded-lg"
+          style={{ backgroundColor: '#1ABC9C' }}
         >
           Join Meeting
         </Button>

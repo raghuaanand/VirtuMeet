@@ -73,46 +73,45 @@ const MeetingRoom = () => {
   };
 
   return (
-    <section className="relative h-[100dvh] w-full overflow-hidden pt-4 text-white bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20">
-      {/* Background overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-      
+    <section className="relative h-[100dvh] w-full overflow-hidden pt-4 text-white" style={{ backgroundColor: '#1C1C2E' }}>
       <div className="relative flex size-full items-center justify-center">
         <div className="flex size-full max-w-7xl items-center px-4">
           <CallLayout />
         </div>
         <div
-          className={cn("h-[calc(100vh-86px)] hidden ml-2 glass-morphism-dark rounded-l-2xl border-l border-white/10", {
+          className={cn("h-[calc(100vh-86px)] hidden ml-2 rounded-l-lg border-l", {
             "show-block": showParticipants,
           })}
+          style={{ backgroundColor: '#242438', borderColor: '#3A3A4A' }}
         >
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
 
       {/* Enhanced Video layout and Call controls */}
-      <div className="fixed bottom-0 flex w-full items-center justify-center gap-4 flex-wrap pb-6 px-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-lg">
-        <div className="flex items-center gap-4 p-3 glass-morphism-dark rounded-2xl border border-white/10">
+      <div className="fixed bottom-0 flex w-full items-center justify-center gap-4 flex-wrap pb-4 px-4" style={{ backgroundColor: 'rgba(28, 28, 46, 0.95)' }}>
+        <div className="flex items-center gap-3 p-2 rounded-lg border" style={{ backgroundColor: '#242438', borderColor: '#3A3A4A' }}>
           <CallControls onLeave={() => router.push("/")} />
           
           <DropdownMenu>
             <div className="flex items-center">
-              <DropdownMenuTrigger className="cursor-pointer rounded-xl glass-morphism-dark px-4 py-3 hover:bg-white/10 transition-all duration-300 hover-lift border border-white/10">
-                <LayoutList size={20} className="text-white" />
+              <DropdownMenuTrigger className="cursor-pointer rounded-lg px-3 py-2 hover:bg-opacity-80 transition-all duration-200 border" style={{ backgroundColor: '#242438', borderColor: '#3A3A4A' }}>
+                <LayoutList size={18} style={{ color: '#E0E0E0' }} />
               </DropdownMenuTrigger>
             </div>
-            <DropdownMenuContent className="glass-morphism-dark border border-white/20 text-white backdrop-blur-xl">
+            <DropdownMenuContent className="border rounded-lg" style={{ backgroundColor: '#242438', borderColor: '#3A3A4A', color: '#E0E0E0' }}>
               {["Grid", "Speaker-Left", "Speaker-Right"].map((item, index) => (
                 <div key={index}>
                   <DropdownMenuItem
                     onClick={() =>
                       setLayout(item.toLowerCase() as CallLayoutType)
                     }
-                    className="hover:bg-white/10 cursor-pointer transition-colors duration-200"
+                    className="hover:bg-opacity-80 cursor-pointer transition-colors duration-200"
+                    style={{ color: '#E0E0E0' }}
                   >
                     {item}
                   </DropdownMenuItem>
-                  {index < 2 && <DropdownMenuSeparator className="border-white/10" />}
+                  {index < 2 && <DropdownMenuSeparator style={{ borderColor: '#3A3A4A' }} />}
                 </div>
               ))}
             </DropdownMenuContent>
@@ -123,11 +122,12 @@ const MeetingRoom = () => {
           <button
             onClick={() => setShowParticipants((prev) => !prev)}
             className={cn(
-              "rounded-xl glass-morphism-dark px-4 py-3 hover:bg-white/10 transition-all duration-300 hover-lift border border-white/10",
-              showParticipants && "bg-blue-500/20 border-blue-400/30"
+              "rounded-lg px-3 py-2 hover:bg-opacity-80 transition-all duration-200 border",
+              showParticipants ? "border-[#1ABC9C]" : "border-[#3A3A4A]"
             )}
+            style={{ backgroundColor: showParticipants ? '#1ABC9C' : '#242438', color: '#E0E0E0' }}
           >
-            <Users size={20} className="text-white" />
+            <Users size={18} />
           </button>
           
           {!isPersonalRoom && <EndCallBtn />}

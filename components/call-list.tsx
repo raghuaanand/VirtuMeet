@@ -81,7 +81,7 @@ const CallList = ({ type }: Props) => {
   return (
     <div className="w-full">
       {calls && calls.length > 0 ? (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
           {calls.map((meeting: Call | CallRecording) => (
             <MeetingCard
               key={(meeting as Call).id || crypto.randomUUID()}
@@ -118,15 +118,13 @@ const CallList = ({ type }: Props) => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center py-16 text-center space-y-6">
-          <div className="w-24 h-24 rounded-full glass-morphism-dark border border-white/10 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-gray-400 to-gray-600 flex items-center justify-center">
-              <span className="text-2xl">📅</span>
-            </div>
+        <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
+          <div className="w-16 h-16 rounded-lg border flex items-center justify-center" style={{ backgroundColor: '#242438', borderColor: '#3A3A4A' }}>
+            <span className="text-xl">📅</span>
           </div>
-          <div className="space-y-2">
-            <h3 className="text-2xl font-bold text-white">{noCallsMessage}</h3>
-            <p className="text-gray-400 max-w-md">
+          <div className="space-y-1">
+            <h3 className="text-xl font-bold" style={{ color: '#E0E0E0' }}>{noCallsMessage}</h3>
+            <p className="max-w-md text-sm" style={{ color: '#A0A0A0' }}>
               {type === "Ended" && "Your completed meetings will appear here"}
               {type === "Upcoming" && "Schedule a meeting to see it here"}
               {type === "Recordings" && "Your recorded meetings will appear here"}

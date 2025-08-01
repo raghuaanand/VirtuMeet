@@ -13,40 +13,29 @@ const HomeCard = ({ Icon, title, description, onClick, className }: Props) => {
   return (
     <div
       className={cn(
-        "group modern-card p-6 flex flex-col justify-between w-full xl:max-w-80 min-h-72 cursor-pointer relative overflow-hidden",
+        "group p-4 flex flex-col gap-4 w-full h-32 cursor-pointer relative overflow-hidden rounded-lg border border-white/20 transition-all duration-300 hover:border-opacity-40 hover:transform hover:scale-105",
         className
       )}
       onClick={onClick}
+      style={{ backgroundColor: '#242438' }}
     >
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      
-      {/* Icon container with enhanced glassmorphism */}
-      <div className="relative z-10">
-        <div className="glassmorphism size-16 rounded-2xl flex justify-center items-center mb-6 group-hover:scale-110 transition-all duration-300">
-          <Icon className="size-8 text-white drop-shadow-lg" />
-          {/* Icon glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      {/* Icon and Title Row */}
+      <div className="flex items-center gap-3">
+        <div 
+          className="p-2 rounded-lg transition-all duration-300 group-hover:scale-110"
+          style={{ backgroundColor: '#1ABC9C' }}
+        >
+          <Icon className="size-5 text-white" />
         </div>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 flex flex-col gap-3">
-        <h2 className="text-2xl font-bold text-white group-hover:text-gradient transition-all duration-300">
+        <h3 className="font-semibold text-sm" style={{ color: '#E0E0E0' }}>
           {title}
-        </h2>
-        <p className="text-base font-medium text-gray-300 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed">
-          {description}
-        </p>
+        </h3>
       </div>
       
-      {/* Animated border */}
-      <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg blur-sm animate-pulse"></div>
-      </div>
-      
-      {/* Shine effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-12"></div>
+      {/* Description */}
+      <p className="text-xs leading-relaxed" style={{ color: '#A0A0A0' }}>
+        {description}
+      </p>
     </div>
   );
 };

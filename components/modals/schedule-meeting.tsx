@@ -10,7 +10,7 @@ import useModalStore from "@/hooks/useModalStore";
 import useOrigin from "@/hooks/useOrigin";
 import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Calendar } from "lucide-react";
 import DatePicker from "react-datepicker";
 import { toast } from "sonner";
 
@@ -78,47 +78,45 @@ const ScheduleMeeting = () => {
       open={isOpen && type === "schedule-meeting"}
       onOpenChange={handleClose}
     >
-      <DialogContent className="modern-card w-full max-w-lg border-none px-6 py-9 text-white shadow-2xl backdrop-blur-xl">
+      <DialogContent className="bg-[#242438] border border-[#3A3A4A] w-full max-w-md p-6 text-white outline-none">
         {callDetail ? (
-          <div className="flex flex-col gap-8">
-            <div className="flex justify-center">
-              <div className="relative">
-                <Image
-                  alt="checked"
-                  width={72}
-                  height={72}
-                  src={"/icons/checked.svg"}
-                  className="icon-glow animate-pulse"
-                />
-                <div className="absolute inset-0 bg-green-400/20 rounded-full blur-xl animate-pulse" />
-              </div>
+          <div className="flex flex-col gap-6 items-center">
+            <div className="p-4 rounded-full bg-[#1ABC9C]/10">
+              <Image
+                alt="checked"
+                width={48}
+                height={48}
+                src={"/icons/checked.svg"}
+                className="text-[#1ABC9C]"
+              />
             </div>
-            <h2 className="text-3xl font-bold leading-[42px] text-center text-gradient bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300">
-              Meeting Scheduled Successfully! 
+            <h2 className="text-xl font-bold text-center text-[#E0E0E0]">
+              Meeting Scheduled!
             </h2>
-            <div className="space-y-4">
-              <p className="text-gray-300 text-center">
-                Share this link with participants to join the meeting
+            <div className="space-y-3 w-full">
+              <p className="text-[#A0A0A0] text-center text-sm">
+                Share this link with participants
               </p>
-              <div className="flex items-center gap-2 p-3 glass-morphism-dark rounded-lg border border-white/10">
+              <div className="flex items-center gap-2 p-3 bg-[#1C1C2E] rounded-lg border border-[#3A3A4A]">
                 <input
-                  className="flex-1 px-3 py-2 text-sm rounded-md bg-black/20 backdrop-blur-sm border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent truncate"
+                  className="flex-1 bg-transparent text-[#E0E0E0] text-sm focus:outline-none"
                   value={meetingLink}
                   readOnly
                 />
                 <Button
                   onClick={onCopy}
                   disabled={copied}
-                  className="btn-glow px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 border-0 font-medium"
+                  size="sm"
+                  className="px-3 py-1 bg-[#1ABC9C] hover:bg-[#1ABC9C]/80 text-white text-xs"
                 >
                   {copied ? (
                     <>
-                      <Check className="h-4 w-4 mr-2" />
+                      <Check className="h-3 w-3 mr-1" />
                       Copied!
                     </>
                   ) : (
                     <>
-                      <Copy className="h-4 w-4 mr-2" />
+                      <Copy className="h-3 w-3 mr-1" />
                       Copy
                     </>
                   )}
@@ -127,24 +125,27 @@ const ScheduleMeeting = () => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl font-bold leading-[42px] text-gradient bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300">
+              <div className="p-4 rounded-full bg-[#1ABC9C]/10 mx-auto w-fit">
+                <Calendar className="w-8 h-8 text-[#1ABC9C]" />
+              </div>
+              <h2 className="text-xl font-bold text-[#E0E0E0]">
                 Schedule Meeting
               </h2>
-              <p className="text-gray-400">
-                Set up a future meeting with date, time and description
+              <p className="text-[#A0A0A0] text-sm">
+                Set up a future meeting with date and time
               </p>
             </div>
             
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <Label htmlFor="description" className="text-sm font-medium text-gray-300">
-                  Add a description (optional)
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="description" className="text-sm font-medium text-[#E0E0E0]">
+                  Description (optional)
                 </Label>
                 <Textarea
                   name="description"
-                  placeholder="Enter meeting description, agenda, or notes..."
+                  placeholder="Enter meeting description..."
                   value={values.description}
                   onChange={(e) =>
                     setValues({
@@ -152,14 +153,14 @@ const ScheduleMeeting = () => {
                       description: e.target.value,
                     })
                   }
-                  className="glass-morphism-dark border border-white/10 focus:ring-2 focus:ring-blue-400/50 focus:border-transparent text-white placeholder-gray-400 resize-none backdrop-blur-sm"
-                  rows={4}
+                  className="bg-[#1C1C2E] border border-[#3A3A4A] text-[#E0E0E0] placeholder-[#A0A0A0] focus:border-[#1ABC9C] focus:ring-0"
+                  rows={3}
                 />
               </div>
               
-              <div className="space-y-3">
-                <Label htmlFor="datetime" className="text-sm font-medium text-gray-300">
-                  Select Date and Time
+              <div className="space-y-2">
+                <Label htmlFor="datetime" className="text-sm font-medium text-[#E0E0E0]">
+                  Date and Time
                 </Label>
                 <div className="relative">
                   <DatePicker
@@ -171,9 +172,8 @@ const ScheduleMeeting = () => {
                     timeCaption="time"
                     dateFormat="MMMM d, yyyy h:mm aa"
                     minDate={new Date()}
-                    className="w-full p-3 rounded-lg glass-morphism-dark border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent backdrop-blur-sm"
+                    className="w-full p-3 rounded-lg bg-[#1C1C2E] border border-[#3A3A4A] text-[#E0E0E0] placeholder-[#A0A0A0] focus:outline-none focus:border-[#1ABC9C]"
                     placeholderText="Select date and time"
-                    popperClassName="date-picker-popper"
                   />
                 </div>
               </div>
@@ -181,8 +181,8 @@ const ScheduleMeeting = () => {
             
             <Button 
               onClick={handleClick} 
-              isLoading={loading}
-              className="btn-glow w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 font-medium text-white border-0 hover-lift"
+              disabled={loading}
+              className="w-full py-2 bg-[#1ABC9C] hover:bg-[#1ABC9C]/80 text-white font-medium rounded-lg transition-all duration-200"
             >
               {loading ? "Scheduling..." : "Schedule Meeting"}
             </Button>

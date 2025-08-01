@@ -25,21 +25,25 @@ const Time = () => {
   if (!isMounted) return null; //prevent hyderation error
 
   return (
-    <div className="flex flex-col items-center gap-3 text-center">
-      <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white drop-shadow-2xl animate-pulse">
-        {time}
-      </h1>
-      <p className="text-sm md:text-lg lg:text-2xl font-medium text-gray-200/90 tracking-wide">
-        {date}
-      </p>
-      {/* Decorative dots */}
-      <div className="flex gap-2 mt-2">
-        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-150"></div>
-        <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-300"></div>
+    <div className="flex flex-col items-center gap-2 text-center">
+      <div className="relative">
+        <h1 className="text-3xl md:text-4xl font-bold" style={{ color: '#E0E0E0' }}>
+          {time}
+        </h1>
+      </div>
+      <div className="space-y-1">
+        <p className="text-sm font-medium" style={{ color: '#A0A0A0' }}>
+          {date}
+        </p>
+        {/* Status indicator */}
+        <div className="flex items-center justify-center gap-2">
+          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#1ABC9C' }}></div>
+          <span className="text-xs font-medium" style={{ color: '#1ABC9C' }}>Live</span>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Time;
+

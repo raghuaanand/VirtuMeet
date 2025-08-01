@@ -6,42 +6,42 @@ const HomePage = async () => {
   const user = await currentUser();
 
   return (
-    <section className="size-full flex flex-col gap-8 text-white">
-      {/* Hero Section with enhanced design */}
-      <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 px-6 sm:px-8 py-8 md:py-12 rounded-3xl bg-hero bg-cover bg-center overflow-hidden">
-        {/* Enhanced overlay for better readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-        
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-between md:px-6 md:py-8">
-          {/* Welcome message with enhanced styling */}
-          <div className="glassmorphism w-fit rounded-2xl px-6 py-3 backdrop-blur-xl">
-            <h2 className="text-lg md:text-xl font-semibold text-center">
-              Welcome back, 
-              <span className="text-gradient font-bold ml-1">
-                {user?.firstName} {user?.lastName}
-              </span> 
-              <span className="ml-2">👋</span>
-            </h2>
+    <section className="w-full space-y-4">
+      {/* Welcome Header */}
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-[#1ABC9C] rounded-full"></div>
+            <span className="text-sm text-[#A0A0A0] font-medium">
+              Welcome back, {user?.firstName} {user?.lastName}
+            </span>
           </div>
-          
-          {/* Time component container */}
-          <div className="flex justify-center items-end">
-            <div className="glassmorphism rounded-3xl p-4 backdrop-blur-xl">
-              <Time />
-            </div>
-          </div>
+          <h1 className="text-xl font-bold text-[#E0E0E0]">
+            Dashboard
+          </h1>
         </div>
         
-        {/* Animated background elements */}
-        <div className="absolute top-10 right-10 w-20 h-20 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 w-16 h-16 bg-purple-500/20 rounded-full blur-lg animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-12 h-12 bg-pink-500/20 rounded-full blur-md animate-pulse delay-500"></div>
+        {/* Quick Status */}
+        <div className="text-right">
+          <div className="flex items-center gap-2 text-[#1ABC9C]">
+            <div className="w-2 h-2 bg-[#1ABC9C] rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium">Online</span>
+          </div>
+        </div>
       </div>
-      
-      {/* Meeting List Section */}
-      <div className="w-full">
+
+      {/* Time Widget */}
+      <div className="bg-[#242438] rounded-lg p-3 border border-[#3A3A4A]">
+        <Time />
+      </div>
+
+      {/* Meeting Actions */}
+      <div className="space-y-3">
+        <div>
+          <h2 className="text-lg font-semibold text-[#E0E0E0] mb-1">Quick Actions</h2>
+          <p className="text-sm text-[#A0A0A0]">Start or schedule meetings instantly</p>
+        </div>
+        
         <MeetingList />
       </div>
     </section>
